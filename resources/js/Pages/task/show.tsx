@@ -43,53 +43,22 @@ const TaskDetails = ({
                                 <p className="text-sm mt-1">
                                     Created at: {task?.created_at}
                                 </p>
-                                <div className="flex items-center gap-2 mt-4">
+                                {task.created_by.id != task.updated_by.id && (
                                     <Badge
                                         variant={"outline"}
+                                        className="hover:underline capitalize cursor-pointer mt-4"
                                         onClick={() =>
                                             router.get(
                                                 route(
                                                     "users.show",
-                                                    assignedUser.id
+                                                    task.updated_by.id
                                                 )
                                             )
                                         }
-                                        className="hover:underline cursor-pointer capitalize block"
                                     >
-                                        assigned to: {assignedUser.name}
+                                        Updated By: {task.updated_by.name}
                                     </Badge>
-                                    <Badge
-                                        variant={"outline"}
-                                        onClick={() =>
-                                            router.get(
-                                                route(
-                                                    "users.show",
-                                                    task.created_by.id
-                                                )
-                                            )
-                                        }
-                                        className="hover:underline capitalize cursor-pointer"
-                                    >
-                                        Created By: {task.created_by.name}
-                                    </Badge>
-                                    {task.created_by.id !=
-                                        task.updated_by.id && (
-                                        <Badge
-                                            variant={"outline"}
-                                            className="hover:underline capitalize cursor-pointer"
-                                            onClick={() =>
-                                                router.get(
-                                                    route(
-                                                        "users.show",
-                                                        task.updated_by.id
-                                                    )
-                                                )
-                                            }
-                                        >
-                                            Updated By: {task.updated_by.name}
-                                        </Badge>
-                                    )}
-                                </div>
+                                )}
                             </div>
                         </div>
                         <div className="flex items-center justify-end gap-3">
@@ -123,7 +92,7 @@ const TaskDetails = ({
                 </section>
                 <section className="space-y-6">
                     <h3 className="font-semibold text-2xl">
-                        Users: ({projects.total})
+                        Assigned Users: ({projects.total})
                     </h3>
                     <UsersTable data={users} />
                 </section>

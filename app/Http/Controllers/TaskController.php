@@ -66,6 +66,7 @@ class TaskController extends Controller
         $user = Auth::user();
         $attributes['created_by'] = $user;
         $attributes['updated_by'] = $user;
+        $attributes['user_id'] = $user->id;
 
         $task = Task::create($attributes);
         $task->projects()->attach(request('project_ids'));
@@ -112,8 +113,6 @@ class TaskController extends Controller
             'description' => ['nullable'],
             'image_path' => ['nullable'],
             'due_date' => ['required'],
-            'assigned_user_id' => ['required'],
-            'project_id' => ['required'],
             'status' => ['required', Rule::in(['pending', 'completed', 'in_progress'])],
             'priority' => ['required', Rule::in(['high', 'low', 'medium'])],
         ]);

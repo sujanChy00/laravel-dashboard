@@ -21,6 +21,8 @@ return new class extends Migration
             $table->timestamp('due_date')->nullable();
             $table->json('created_by');
             $table->json('updated_by');
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('project_id')->constrained('projects')->onDelete('cascade');
             $table->timestamps();
         });
 

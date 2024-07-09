@@ -9,6 +9,7 @@ import { PageProps, PaginatedData } from "@/types";
 import { IProjects } from "@/types/IProjects";
 import { ITasks } from "@/types/ITask";
 import { Head, Link, router } from "@inertiajs/react";
+import { Plus } from "lucide-react";
 import { ReactElement } from "react";
 
 const ProjectDetails = ({
@@ -88,8 +89,13 @@ const ProjectDetails = ({
                     </div>
                 </section>
             </div>
-            <div className="space-y-2 m-4 p-4 rounded-lg shadow bg-black">
-                <h1 className="text-2xl font-semibold">Tasks</h1>
+            <div className="space-y-6 m-4 p-4 rounded-lg shadow bg-black">
+                <div className="flex items-center justify-between">
+                    <h1 className="text-2xl font-semibold">Tasks</h1>
+                    <Button onClick={() => router.get(route("task.create"))}>
+                        <Plus /> Add
+                    </Button>
+                </div>
                 <TaskTable withFilters={false} {...props} />
             </div>
         </>
