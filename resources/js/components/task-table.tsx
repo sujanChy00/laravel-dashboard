@@ -38,7 +38,10 @@ export const TaskTable = ({
 
             header: () => (
                 <div
-                    className="cursor-pointer flex items-center gap-1"
+                    className={cn(
+                        "flex items-center gap-1",
+                        withFilters && "cursor-pointer"
+                    )}
                     onClick={() =>
                         withFilters && onSort("name", "task.index", params)
                     }
@@ -79,7 +82,10 @@ export const TaskTable = ({
             accessorKey: "created_at",
             header: () => (
                 <div
-                    className="cursor-pointer flex items-center gap-1"
+                    className={cn(
+                        "flex items-center gap-1",
+                        withFilters && "cursor-pointer"
+                    )}
                     onClick={() =>
                         withFilters &&
                         onSort("created_at", "task.index", params)
@@ -219,9 +225,11 @@ export const TaskTable = ({
                         >
                             clear <X className="h-4 w-4" />
                         </p>
-                        <Link href={route("task.create")}>
-                            <Button>Add</Button>
-                        </Link>
+                        <Button
+                            onClick={() => router.get(route("task.create"))}
+                        >
+                            Add
+                        </Button>
                     </div>
                 </div>
             )}

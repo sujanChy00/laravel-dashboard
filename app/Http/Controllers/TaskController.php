@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTaskRequest;
+use App\Http\Resources\TaskResource;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Project;
@@ -59,8 +60,6 @@ class TaskController extends Controller
             'description' => ['nullable'],
             'image_path' => ['nullable'],
             'due_date' => ['required'],
-            'assigned_user_id' => ['required'],
-            'project_id' => ['required'],
             'status' => ['required', Rule::in(['pending', 'completed', 'in_progress'])],
             'priority' => ['required', Rule::in(['high', 'low', 'medium'])],
         ]);
@@ -68,7 +67,10 @@ class TaskController extends Controller
         $attributes['created_by'] = $user;
         $attributes['updated_by'] = $user;
 
-        Task::create($attributes);
+        $task = Task::create($attributes);
+        $task->projects()->attach(request('project_ids'));
+        $task->users()->attach(request('assigned_user_ids'));
+
 
         return redirect()->route('task.index')->with('success', 'Task created successfully');
     }
@@ -78,8 +80,12 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
+
         return Inertia::render('task/show', [
-            'task' => $task
+            'task' => new TaskResource($task),
+            'assignedUser' => $task->assignedUser,
+            'projects' => $task->projects()->latest()->paginate(10),
+            'users' => $task->users()->latest()->paginate(10)
         ]);
     }
 
@@ -115,8 +121,11 @@ class TaskController extends Controller
         $attributes['updated_by'] = $user;
 
         $task->update($attributes);
+        $task->projects()
+            ->sync(request('project_ids'));
+        $task->users()->sync(request('assigned_user_ids'));
 
-        return redirect()->route('task.index')->with('success', 'Task updated successfully');
+        return redirect('/task/' . $task->id . '/show')->with('success', 'Task updated successfully');
     }
 
     /**

@@ -1,4 +1,5 @@
 import { IStatus } from "./IProjects";
+import { IUser } from "./IUser";
 
 export interface ITasks {
     id: number;
@@ -8,9 +9,10 @@ export interface ITasks {
     status: IStatus;
     priority: string;
     due_date: Date | null;
-    assigned_user_id: number;
-    project_id: number;
-    created_by: number;
-    updated_by: number;
+    assigned_user_ids: number[];
+    project_ids: number[];
+    created_by: IUser;
+    updated_by: IUser;
+    assigned_to: IUser;
     created_at: string;
 }

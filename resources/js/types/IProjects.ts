@@ -1,4 +1,4 @@
-import { CreatedBy, UpdatedBy } from "./IUser";
+import { IUser } from "./IUser";
 
 export interface IProjects {
     id: number;
@@ -7,8 +7,8 @@ export interface IProjects {
     due_date: string;
     status: IStatus;
     image_path: string;
-    created_by: CreatedBy;
-    updated_by: UpdatedBy;
+    created_by: IUser;
+    updated_by: IUser;
     created_at: string;
     updated_at: string;
 }

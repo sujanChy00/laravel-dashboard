@@ -33,7 +33,8 @@ class TaskFactory extends Factory
             'updated_by' => json_encode($user),
             'created_at' => time(),
             'updated_at' => time(),
-            "assigned_user_id" => 1
+            "assigned_user_ids" => [1, 2],
+            'project_ids' => [3, 4]
         ];
     }
 }

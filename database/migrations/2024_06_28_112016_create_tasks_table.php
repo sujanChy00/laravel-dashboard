@@ -19,10 +19,22 @@ return new class extends Migration
             $table->string('status');
             $table->string('priority');
             $table->timestamp('due_date')->nullable();
-            $table->foreignId('assigned_user_id')->constrained('users');
-            $table->foreignId('project_id')->constrained('projects')->onDelete('cascade');
             $table->json('created_by');
             $table->json('updated_by');
+            $table->timestamps();
+        });
+
+        Schema::create('task_user', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('task_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->timestamps();
+        });
+
+        Schema::create('task_project', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('task_id')->constrained()->onDelete('cascade');
+            $table->foreignId('project_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -33,5 +45,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('tasks');
+        Schema::dropIfExists('task_user');
+        Schema::dropIfExists('task_project');
     }
 };

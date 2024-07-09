@@ -1,6 +1,6 @@
-import ApplicationLogo from "@/Components/ApplicationLogo";
-import { UserDropDown } from "@/Layouts/user-drop-down";
+import ApplicationLogo from "@/components/ApplicationLogo";
 import { buttonVariants } from "@/components/ui/button";
+import { UserDropDown } from "@/Layouts/user-drop-down";
 import { cn } from "@/lib/utils";
 import { PageProps } from "@/types";
 import { Head, Link } from "@inertiajs/react";

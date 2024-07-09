@@ -19,6 +19,7 @@ const PaginationLinks = <T extends any>({
     nextandprevonly?: boolean;
     className?: string;
 }) => {
+    if (data.data.length < data.per_page) return null;
     return (
         <Pagination className={cn("my-4 mx-0", className)}>
             <PaginationContent className="m-0">

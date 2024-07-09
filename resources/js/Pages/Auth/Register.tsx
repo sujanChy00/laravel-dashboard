@@ -1,8 +1,6 @@
-import InputError from "@/Components/InputError";
-import InputLabel from "@/Components/InputLabel";
-import TextInput from "@/Components/TextInput";
-import { AvatarPicker } from "@/Components/avatar-picker";
 import GuestLayout from "@/Layouts/GuestLayout";
+import { AvatarPicker } from "@/components/form/avatar-picker";
+import { TextInput } from "@/components/form/text-input";
 import { Button } from "@/components/ui/button";
 import { Head, Link, useForm } from "@inertiajs/react";
 import { FormEventHandler, useEffect } from "react";
@@ -38,81 +36,45 @@ export default function Register() {
                     className="mx-auto"
                     onImageChange={(img) => setData("avatar", img)}
                 />
-                <div>
-                    <InputLabel htmlFor="name" value="Name" />
 
-                    <TextInput
-                        id="name"
-                        name="name"
-                        value={data.name}
-                        className="mt-1 block w-full"
-                        autoComplete="name"
-                        isFocused={true}
-                        onChange={(e) => setData("name", e.target.value)}
-                        required
-                    />
+                <TextInput
+                    label="Name"
+                    error={errors.name}
+                    name="name"
+                    value={data.name}
+                    className="mt-1 block w-full"
+                    onChange={setData}
+                />
 
-                    <InputError message={errors.name} className="mt-2" />
-                </div>
+                <TextInput
+                    label="Email"
+                    error={errors.email}
+                    type="email"
+                    name="email"
+                    value={data.email}
+                    className="mt-4 block w-full"
+                    onChange={setData}
+                />
 
-                <div className="mt-4">
-                    <InputLabel htmlFor="email" value="Email" />
+                <TextInput
+                    label="Password"
+                    type="password"
+                    error={errors.password}
+                    name="password"
+                    value={data.password}
+                    className="mt-4 block w-full"
+                    onChange={setData}
+                />
 
-                    <TextInput
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={data.email}
-                        className="mt-1 block w-full"
-                        autoComplete="username"
-                        onChange={(e) => setData("email", e.target.value)}
-                        required
-                    />
-
-                    <InputError message={errors.email} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
-
-                    <TextInput
-                        id="password"
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                        onChange={(e) => setData("password", e.target.value)}
-                        required
-                    />
-
-                    <InputError message={errors.password} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel
-                        htmlFor="password_confirmation"
-                        value="Confirm Password"
-                    />
-
-                    <TextInput
-                        id="password_confirmation"
-                        type="password"
-                        name="password_confirmation"
-                        value={data.password_confirmation}
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                        onChange={(e) =>
-                            setData("password_confirmation", e.target.value)
-                        }
-                        required
-                    />
-
-                    <InputError
-                        message={errors.password_confirmation}
-                        className="mt-2"
-                    />
-                </div>
+                <TextInput
+                    label="Confirm Password"
+                    type="password"
+                    error={errors.password_confirmation}
+                    name="password_confirmation"
+                    value={data.password_confirmation}
+                    className="mt-4 block w-full"
+                    onChange={setData}
+                />
 
                 <div className="flex items-center justify-end mt-4">
                     <Link

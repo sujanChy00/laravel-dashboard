@@ -40,8 +40,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $projects = $user->projects()->get();
-        return Inertia::render('users/show', ['user' => $user, 'projects' => $projects]);
+        $projects = $user->projects()->latest()->paginate(10);
+        $tasks = $user->tasks()->latest()->paginate(10);
+        return Inertia::render('users/show', ['user' => $user, 'projects' => $projects, 'tasks' => $tasks]);
     }
 
     /**

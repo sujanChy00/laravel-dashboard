@@ -1,6 +1,4 @@
-import InputError from "@/Components/InputError";
-import InputLabel from "@/Components/InputLabel";
-import TextInput from "@/Components/TextInput";
+import { TextInput } from "@/components/form/text-input";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { useForm } from "@inertiajs/react";
@@ -76,32 +74,15 @@ export default function DeleteUserForm({
                             permanently delete your account.
                         </p>
 
-                        <div className="mt-6">
-                            <InputLabel
-                                htmlFor="password"
-                                value="Password"
-                                className="sr-only"
-                            />
-
-                            <TextInput
-                                id="password"
-                                type="password"
-                                name="password"
-                                ref={passwordInput}
-                                value={data.password}
-                                onChange={(e) =>
-                                    setData("password", e.target.value)
-                                }
-                                className="mt-1 block w-3/4"
-                                isFocused
-                                placeholder="Password"
-                            />
-
-                            <InputError
-                                message={errors.password}
-                                className="mt-2"
-                            />
-                        </div>
+                        <TextInput
+                            type="password"
+                            name="password"
+                            error={errors.password}
+                            value={data.password}
+                            onChange={setData}
+                            className="mt-6 block w-3/4"
+                            placeholder="Password"
+                        />
 
                         <div className="mt-6 flex justify-end">
                             <Button onClick={closeModal}>Cancel</Button>

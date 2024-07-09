@@ -1,20 +1,7 @@
-export interface CreatedBy {
-    id: string;
-    name: string;
-    email: string;
-    created_by: string;
-}
-
-export interface UpdatedBy {
-    id: string;
-    name: string;
-    email: string;
-    updated_by: string;
-}
-
 export interface IUser {
     created_at: string;
     email: string;
+    avatar: string | null;
     email_verified_at: string;
     id: number;
     name: string;

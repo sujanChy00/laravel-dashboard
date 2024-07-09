@@ -1,7 +1,5 @@
-import InputError from "@/Components/InputError";
-import InputLabel from "@/Components/InputLabel";
-import TextInput from "@/Components/TextInput";
-import { AvatarPicker } from "@/Components/avatar-picker";
+import { AvatarPicker } from "@/components/form/avatar-picker";
+import { TextInput } from "@/components/form/text-input";
 import { Button } from "@/components/ui/button";
 import { PageProps } from "@/types";
 import { Link, useForm, usePage } from "@inertiajs/react";
@@ -46,47 +44,24 @@ export default function UpdateProfileInformation({
             <form onSubmit={submit} className="mt-6 space-y-6">
                 <section className="grid grid-cols-12 gap-4">
                     <div className="space-y-6 md:col-span-8">
-                        <div>
-                            <InputLabel htmlFor="name" value="Name" />
+                        <TextInput
+                            label="Name"
+                            name="name"
+                            className="mt-1 block w-full"
+                            value={data.name}
+                            onChange={setData}
+                            error={errors.name}
+                        />
 
-                            <TextInput
-                                id="name"
-                                className="mt-1 block w-full"
-                                value={data.name}
-                                onChange={(e) =>
-                                    setData("name", e.target.value)
-                                }
-                                required
-                                isFocused
-                                autoComplete="name"
-                            />
-
-                            <InputError
-                                className="mt-2"
-                                message={errors.name}
-                            />
-                        </div>
-
-                        <div>
-                            <InputLabel htmlFor="email" value="Email" />
-
-                            <TextInput
-                                id="email"
-                                type="email"
-                                className="mt-1 block w-full"
-                                value={data.email}
-                                onChange={(e) =>
-                                    setData("email", e.target.value)
-                                }
-                                required
-                                autoComplete="username"
-                            />
-
-                            <InputError
-                                className="mt-2"
-                                message={errors.email}
-                            />
-                        </div>
+                        <TextInput
+                            label="Email"
+                            name="email"
+                            type="email"
+                            className="mt-1 block w-full"
+                            value={data.email}
+                            onChange={setData}
+                            error={errors.email}
+                        />
                     </div>
                     <div className="col-span-4 flex items-center justify-center">
                         <AvatarPicker

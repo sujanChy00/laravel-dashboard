@@ -1,8 +1,8 @@
-import { TaskTable } from "@/Components/task-table";
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import { TaskTable } from "@/components/task-table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { statusTheme } from "@/constants/data";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { IPrams } from "@/lib/sort";
 import { cn } from "@/lib/utils";
 import { PageProps, PaginatedData } from "@/types";
@@ -27,7 +27,7 @@ const ProjectDetails = ({
                     <img
                         src={project.image_path || ""}
                         alt={project.name}
-                        className="rounded-lg h-40 w-40"
+                        className="rounded-lg h-40 w-40 shadow"
                     />
                     <div className="space-y-2">
                         <h1 className="text-2xl font-medium capitalize">

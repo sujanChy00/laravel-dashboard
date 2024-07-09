@@ -1,6 +1,5 @@
-import InputError from "@/Components/InputError";
-import InputLabel from "@/Components/InputLabel";
-import TextInput from "@/Components/TextInput";
+import InputLabel from "@/components/form/InputLabel";
+import { TextInput } from "@/components/form/text-input";
 import { Button } from "@/components/ui/button";
 import { useForm } from "@inertiajs/react";
 import { FormEventHandler, useRef } from "react";
@@ -61,68 +60,39 @@ export default function UpdatePasswordForm({
             </header>
 
             <form onSubmit={updatePassword} className="mt-6 space-y-6">
-                <div>
-                    <InputLabel
-                        htmlFor="current_password"
-                        value="Current Password"
-                    />
+                <TextInput
+                    label="Confirm Password"
+                    name="current_password"
+                    value={data.current_password}
+                    onChange={setData}
+                    type="password"
+                    error={errors.current_password}
+                    className="mt-1 block w-full"
+                />
 
-                    <TextInput
-                        id="current_password"
-                        ref={currentPasswordInput}
-                        value={data.current_password}
-                        onChange={(e) =>
-                            setData("current_password", e.target.value)
-                        }
-                        type="password"
-                        className="mt-1 block w-full"
-                        autoComplete="current-password"
-                    />
+                <TextInput
+                    label="New Password"
+                    name="password"
+                    value={data.password}
+                    onChange={setData}
+                    type="password"
+                    className="mt-1 block w-full"
+                />
 
-                    <InputError
-                        message={errors.current_password}
-                        className="mt-2"
-                    />
-                </div>
+                <InputLabel
+                    htmlFor="password_confirmation"
+                    value="Confirm Password"
+                />
 
-                <div>
-                    <InputLabel htmlFor="password" value="New Password" />
-
-                    <TextInput
-                        id="password"
-                        ref={passwordInput}
-                        value={data.password}
-                        onChange={(e) => setData("password", e.target.value)}
-                        type="password"
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                    />
-
-                    <InputError message={errors.password} className="mt-2" />
-                </div>
-
-                <div>
-                    <InputLabel
-                        htmlFor="password_confirmation"
-                        value="Confirm Password"
-                    />
-
-                    <TextInput
-                        id="password_confirmation"
-                        value={data.password_confirmation}
-                        onChange={(e) =>
-                            setData("password_confirmation", e.target.value)
-                        }
-                        type="password"
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                    />
-
-                    <InputError
-                        message={errors.password_confirmation}
-                        className="mt-2"
-                    />
-                </div>
+                <TextInput
+                    label="Confirm Password"
+                    error={errors.password_confirmation}
+                    name="password_confirmation"
+                    value={data.password_confirmation}
+                    onChange={setData}
+                    type="password"
+                    className="mt-1 block w-full"
+                />
 
                 <div className="flex items-center gap-4">
                     <Button disabled={processing}>Save</Button>

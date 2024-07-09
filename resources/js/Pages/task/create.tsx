@@ -1,4 +1,4 @@
-import { TaskForm } from "@/Components/task-form";
+import { TaskForm } from "@/components/task-form";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { PageProps } from "@/types";
 import { IProjects } from "@/types/IProjects";

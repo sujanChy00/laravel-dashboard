@@ -1,4 +1,4 @@
-import { ProjectForm } from "@/Components/project-form";
+import { ProjectForm } from "@/components/project-form";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { PageProps } from "@/types";
 import { IProjects } from "@/types/IProjects";

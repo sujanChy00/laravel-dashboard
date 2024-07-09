@@ -1,4 +1,4 @@
-import { TaskTable, TaskTableProps } from "@/Components/task-table";
+import { TaskTable, TaskTableProps } from "@/components/task-table";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { PageProps } from "@/types";
 import { ReactElement } from "react";

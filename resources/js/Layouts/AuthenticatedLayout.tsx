@@ -1,4 +1,4 @@
-import { Flash } from "@/Components/flash-message";
+import { Flash } from "@/components/flash-message";
 import { cn } from "@/lib/utils";
 import { PageProps } from "@/types";
 import { ReactElement } from "react";
